@@ -24,6 +24,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 import java.util.concurrent.TimeUnit;
 
 public class InfluxDBConnectionFactory implements InitializingBean
@@ -53,6 +55,19 @@ public class InfluxDBConnectionFactory implements InitializingBean
         .connectTimeout(properties.getConnectTimeout(), TimeUnit.SECONDS)
         .writeTimeout(properties.getWriteTimeout(), TimeUnit.SECONDS)
         .readTimeout(properties.getReadTimeout(), TimeUnit.SECONDS);
+
+      /**
+       *  Support disable Hostname Verification
+       */
+      if(properties.isHostnameVerificationDisabled()){
+        client.hostnameVerifier(new HostnameVerifier() {
+          @Override
+          public boolean verify(String s, SSLSession sslSession) {
+            logger.warn("Hostname Verification is disabled.");
+            return true;
+          }
+        });
+      }
       connection = InfluxDBFactory
         .connect(properties.getUrl(), properties.getUsername(), properties.getPassword(), client);
       logger.debug("Using InfluxDB '{}' on '{}'", properties.getDatabase(), properties.getUrl());

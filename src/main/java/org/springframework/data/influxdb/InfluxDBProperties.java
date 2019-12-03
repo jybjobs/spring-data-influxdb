@@ -45,6 +45,8 @@ public class InfluxDBProperties
 
   private boolean gzip = false;
 
+  private boolean hostnameVerificationDisabled = false;
+
   public String getUrl()
   {
     return url;
@@ -133,5 +135,13 @@ public class InfluxDBProperties
   public void setGzip(boolean gzip)
   {
     this.gzip = gzip;
+  }
+
+  public boolean isHostnameVerificationDisabled() {
+    return hostnameVerificationDisabled;
+  }
+
+  public void setHostnameVerificationDisabled(boolean hostnameVerificationDisabled) {
+    this.hostnameVerificationDisabled = hostnameVerificationDisabled;
   }
 }

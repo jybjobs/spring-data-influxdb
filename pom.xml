@@ -10,7 +10,7 @@
 
   <groupId>com.github.miwurster</groupId>
   <artifactId>spring-data-influxdb</artifactId>
-  <version>1.9-SNAPSHOT</version>
+  <version>1.9.2</version>
 
   <name>Spring Data InfluxDB</name>
   <description>Spring integration with InfluxDB.</description>
@@ -92,17 +92,17 @@
           <arguments>-Prelease</arguments>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.7</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
+      <!--<plugin>-->
+        <!--<groupId>org.sonatype.plugins</groupId>-->
+        <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+        <!--<version>1.6.7</version>-->
+        <!--<extensions>true</extensions>-->
+        <!--<configuration>-->
+          <!--<serverId>3rdParty</serverId>-->
+          <!--<nexusUrl>http://nexus.sre.xsy.local/repository/kt-maven/</nexusUrl>-->
+          <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+        <!--</configuration>-->
+      <!--</plugin>-->
     </plugins>
     <pluginManagement>
       <plugins>
@@ -187,14 +187,25 @@
     </profile>
   </profiles>
 
+  <!--<distributionManagement>-->
+    <!--<snapshotRepository>-->
+      <!--<id>ossrh</id>-->
+      <!--<url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
+    <!--</snapshotRepository>-->
+    <!--<repository>-->
+      <!--<id>ossrh</id>-->
+      <!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+    <!--</repository>-->
+  <!--</distributionManagement>-->
+
   <distributionManagement>
     <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <id>3rdParty</id>
+      <url>http://nexus.sre.xsy.local/repository/3rdParty/</url>
     </snapshotRepository>
     <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>3rdParty</id>
+      <url>http://nexus.sre.xsy.local/repository/3rdParty/</url>
     </repository>
   </distributionManagement>
 
